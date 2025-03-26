@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en-us">
   <head>
     <meta charset="utf-8">
@@ -110,11 +110,13 @@
       loadingBar.style.display = "block";
 
       var script = document.createElement("script");
+      var unityIns = null;
       script.src = loaderUrl;
       script.onload = () => {
         createUnityInstance(canvas, config, (progress) => {
           progressBarFull.style.width = 100 * progress + "%";
               }).then((unityInstance) => {
+                unityIns = unityInstance;
                 loadingBar.style.display = "none";
                 fullscreenButton.onclick = () => {
                   unityInstance.SetFullscreen(1);
@@ -125,7 +127,37 @@
             };
 
       document.body.appendChild(script);
+      /**
+       * ReceiveJSMethod 函数用于接收来自网页的指令和消息，并将它们传递给 Unity 中的对象。
+       * @param {string} methodName - 要调用的 Unity 对象的方法名
+       * @param {string} message - 要传递给 Unity 对象的消息（可选）
+       */
+      function ReceiveJSMethod(methodName, message) {
+        // 在控制台输出接收到的methodName和message，用于调试
+        console.log(methodName, message);
 
+        // 检查methodName是否不为null
+        if (methodName != null) {
+          // 如果message也不为null，则进行处理
+          if (message != null) {
+            // 将文本消息转换为base64编码
+            var base64Str = btoa(
+              encodeURIComponent(message).replace(
+                /%([0-9A-F]{2})/g,
+                function (match, p1) {
+                  // 将百分比编码的序列转换回原始字符
+                  return String.fromCharCode("0x" + p1);
+                }
+              )
+            );
+            // 使用Unity引擎的SendMessage方法，将methodName和base64编码的消息发送给名为"Cube"的Unity对象
+            unityIns.SendMessage("Cube", methodName, base64Str);
+          } else {
+            // 如果没有message，只发送methodName给名为"Cube"的Unity对象
+            unityIns.SendMessage("Cube", methodName);
+          }
+        }
+      }
     </script>
   </body>
 </html>
