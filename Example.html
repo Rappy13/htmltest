@@ -84,9 +84,9 @@
     </div>
 
     <div class="nav">
-      <button id="enlargeButton" class="nav-button">放大</button>
-      <button id="shrinkButton" class="nav-button">缩小</button>
-      <button id="infoButton" class="nav-button">设置信息</button>
+      <button id="displayButton" class="nav-button">顯示/隱藏樓板</button>
+      <button id="zoomButton" class="nav-button">鏡頭拉近</button>
+      <button id="resetButton" class="nav-button">重置鏡頭</button>
     </div>
 
     <div class="container">
@@ -125,11 +125,11 @@
       // 获取DOM中id为"webgl"的iframe元素
       var unWebGL = document.getElementById("webgl");
       // 获取放大按钮
-      var enlargeButton = document.getElementById("enlargeButton");
+      var displayButton = document.getElementById("displayButton");
       // 获取缩小按钮
-      var shrinkButton = document.getElementById("shrinkButton");
+      var zoomButton = document.getElementById("zoomButton");
       // 获取信息按钮
-      var infoButton = document.getElementById("infoButton");
+      var resetButton = document.getElementById("resetButton");
 
       /**
        * Action函数用于向iframe内的WebGL应用发送指令。
@@ -144,22 +144,22 @@
       }
 
       // 为放大按钮添加点击事件监听
-      enlargeButton.addEventListener("click", function () {
+      displayButton.addEventListener("click", function () {
           // 当按钮被点击时，调用Action函数，通知WebGL应用增大缩放
-          Action("AddScale");
+          Action("DisplayFloor");
           // 可以在这里执行其他操作
       });
 
       // 为缩小按钮添加点击事件监听
-      shrinkButton.addEventListener("click", function () {
+      zoomButton.addEventListener("click", function () {
           // 当按钮被点击时，调用Action函数，通知WebGL应用减小缩放
-          Action("SubtractScale");
+          Action("Zoom");
       });
 
       // 为信息按钮添加点击事件监听
-      infoButton.addEventListener("click", function () {
+      resetButton.addEventListener("click", function () {
           // 当按钮被点击时，调用Action函数，通知WebGL应用显示信息
-          Action("SetTextInfo", "这是一条测试消息");
+          Action("ResetCamera");
       });
   </script>
 </html>
