@@ -87,6 +87,7 @@
       <button id="displayButton" class="nav-button">顯示/隱藏樓板</button>
       <button id="zoomButton" class="nav-button">鏡頭拉近</button>
       <button id="resetButton" class="nav-button">重置鏡頭</button>
+      <button id="warningButton" class="nav-button">顯示警告</button>
     </div>
 
     <div class="container">
@@ -130,7 +131,7 @@
       var zoomButton = document.getElementById("zoomButton");
       // 获取信息按钮
       var resetButton = document.getElementById("resetButton");
-
+      var warningButton = document.getElementById("warningButton");
       /**
        * Action函数用于向iframe内的WebGL应用发送指令。
        * @param {string} methodName - 要调用的方法名
@@ -161,5 +162,11 @@
           // 当按钮被点击时，调用Action函数，通知WebGL应用显示信息
           Action("ResetCamera");
       });
+      warningButton.addEventListener("click", function () {
+          // 当按钮被点击时，调用Action函数，通知WebGL应用显示信息
+          Action("SetWarning");
+      });
+
+
   </script>
 </html>
