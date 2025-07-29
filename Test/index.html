@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en-us">
   <head>
     <meta charset="utf-8">
@@ -147,7 +147,7 @@
                         )
                     );
                     // 使用Unity引擎的SendMessage方法，将methodName和base64编码的消息发送给名为"Cube"的Unity对象
-                    unityIns.SendMessage("Mamager", methodName, base64Str);
+                    unityIns.SendMessage("Manager", methodName, base64Str);
                 } else {
                     // 如果没有message，只发送methodName给名为"Cube"的Unity对象
                     unityIns.SendMessage("Manager", methodName);
