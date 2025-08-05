@@ -1,4 +1,4 @@
-ï»¿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en-us">
   <head>
     <meta charset="utf-8">
@@ -124,32 +124,32 @@
 
       document.body.appendChild(script);
         /**
-      * ReceiveJSMethod å‡½æ•°ç”¨äºæ¥æ”¶æ¥è‡ªç½‘é¡µçš„æŒ‡ä»¤å’Œæ¶ˆæ¯ï¼Œå¹¶å°†å®ƒä»¬ä¼ é€’ç»™ Unity ä¸­çš„å¯¹è±¡ã€‚
-      * @param {string} methodName - è¦è°ƒç”¨çš„ Unity å¯¹è±¡çš„æ–¹æ³•å
-      * @param {string} message - è¦ä¼ é€’ç»™ Unity å¯¹è±¡çš„æ¶ˆæ¯ï¼ˆå¯é€‰ï¼‰
+      * ReceiveJSMethod ¨ç?¥Î¤_±µ¦¬?¦ÛÊI?ªº«ü¥O©M®ø®§¡A¦}?¥¦???? Unity ¤¤ªº?¶H¡C
+      * @param {string} methodName - ­n?¥Îªº Unity ?¶Hªº¤èªk¦W
+      * @param {string} message - ­n??? Unity ?¶Hªº®ø®§¡]¥i?¡^
       */
         function ReceiveJSMethod(methodName, message) {
-            // åœ¨æ§åˆ¶å°è¾“å‡ºæ¥æ”¶åˆ°çš„methodNameå’Œmessageï¼Œç”¨äºè°ƒè¯•
+            // ¦b±±¨î¥x?¥X±µ¦¬¨ìªºmethodName©Mmessage¡A¥Î¤_??
             console.log(methodName, message);
 
-            // æ£€æŸ¥methodNameæ˜¯å¦ä¸ä¸ºnull
+            // ?¬dmethodName¬O§_¤£?null
             if (methodName != null) {
-                // å¦‚æœmessageä¹Ÿä¸ä¸ºnullï¼Œåˆ™è¿›è¡Œå¤„ç†
+                // ¦pªGmessage¤]¤£?null¡A??¦æ?²z
                 if (message != null) {
-                    // å°†æ–‡æœ¬æ¶ˆæ¯è½¬æ¢ä¸ºbase64ç¼–ç 
+                    // ?¤å¥»®ø®§???base64??
                     var base64Str = btoa(
                         encodeURIComponent(message).replace(
                             /%([0-9A-F]{2})/g,
                             function (match, p1) {
-                                // å°†ç™¾åˆ†æ¯”ç¼–ç çš„åºåˆ—è½¬æ¢å›åŸå§‹å­—ç¬¦
+                                // ?¦Ê¤À¤ñ??ªº§Ç¦C??¦^­ì©l¦r²Å
                                 return String.fromCharCode("0x" + p1);
                             }
                         )
                     );
-                    // ä½¿ç”¨Unityå¼•æ“çš„SendMessageæ–¹æ³•ï¼Œå°†methodNameå’Œbase64ç¼–ç çš„æ¶ˆæ¯å‘é€ç»™åä¸º"Cube"çš„Unityå¯¹è±¡
-                    unityIns.SendMessage("Manager", methodName, base64Str);
+                    // ¨Ï¥ÎUnity¤ŞÀºªºSendMessage¤èªk¡A?methodName©Mbase64??ªº®ø®§?°e?¦W?"Cube"ªºUnity?¶H
+                    unityIns.SendMessage("Manager", methodName, message);
                 } else {
-                    // å¦‚æœæ²¡æœ‰messageï¼Œåªå‘é€methodNameç»™åä¸º"Cube"çš„Unityå¯¹è±¡
+                    // ¦pªG?¦³message¡A¥u?°emethodName?¦W?"Cube"ªºUnity?¶H
                     unityIns.SendMessage("Manager", methodName);
                 }
             }
